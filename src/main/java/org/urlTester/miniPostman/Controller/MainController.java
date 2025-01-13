@@ -8,7 +8,9 @@ import org.springframework.web.client.RestClient;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -48,13 +50,14 @@ public class MainController {
     public void initialize() {
         methodComboBox.getItems().addAll("GET", "POST", "PUT", "DELETE");
         methodComboBox.getSelectionModel().selectFirst();
-        addHeader(); // Add first header by default
+        addHeader();
     }
 
     @FXML
     private void sendRequestButton(){
         log.info("Sending request...");
         String response = sendRequest();
+        showResponse(response);
         log.info("Response: {}", response);
     }
 
@@ -74,6 +77,17 @@ public class MainController {
         headersContainer.getChildren().add(headerRow);
 
         headerFields.put(headerRow, Map.entry(keyField, valueField));
+    }
+
+    private void showResponse(String response) {
+        log.info("Response: {}", response);
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Response");
+        dialog.setHeaderText("Response");
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        TextArea textArea = new TextArea(response);
+        dialog.getDialogPane().setContent(textArea);
+        dialog.showAndWait();
     }
 
     private void removeHeader(HBox headerRow) {
