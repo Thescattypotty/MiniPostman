@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" spacing="40.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.urlTester.miniPostman.Controller.MainController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="10" VBox.vgrow="ALWAYS">
+            <children>
+                <ComboBox fx:id="methodComboBox" prefWidth="100.0" promptText="Select Method">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <TextField fx:id="urlField" prefWidth="300.0" promptText="Enter URL" />
+            </children>
+        </HBox>
+        <HBox fx:id="Headers" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="400.0" spacing="10" VBox.vgrow="ALWAYS">
+            <children>
+                <VBox spacing="5">
+                    <Label text="Headers:" />
+                    <VBox fx:id="headersContainer" spacing="5" />
+                    <Button onAction="#addHeader" text="Add Header" />
+                </VBox>
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="10.0" layoutY="290.0" prefHeight="100.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TextArea fx:id="body" prefHeight="95.0" prefWidth="651.0" promptText="Enter JSON body here" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendRequestButton"
+                    prefHeight="44.0" prefWidth="189.0" text="Send Request" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
