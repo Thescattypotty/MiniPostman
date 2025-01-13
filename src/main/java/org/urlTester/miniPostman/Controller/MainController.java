@@ -84,7 +84,7 @@ public class MainController {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Response");
         dialog.setHeaderText("Response");
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
         TextArea textArea = new TextArea(response);
         dialog.getDialogPane().setContent(textArea);
         dialog.showAndWait();
